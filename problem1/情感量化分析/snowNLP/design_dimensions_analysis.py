@@ -4,12 +4,12 @@ import jieba.posseg as pseg
 from snownlp import SnowNLP
 from collections import defaultdict, Counter
 
-# === 1. 加载评论数据 ===
+#=== 1. 加载评论数据 ===
 csv_path = r"D:\data\smartphone-design-pricing\data\tmall_782189145082_comments.csv"
 df = pd.read_csv(csv_path)
 df = df[df["content"].notna()]
 
-# === 2. 定义维度关键词 ===
+#=== 2. 定义维度关键词 ===
 dimension_keywords = {
     "外观设计": {"外观", "颜色", "手感", "屏幕", "设计", "颜值"},
     "拍照性能": {"拍照", "清晰", "像素", "摄像", "相机", "微距", "抓拍"},
@@ -19,11 +19,11 @@ dimension_keywords = {
     "价格敏感度": {"价格", "值不值", "便宜", "优惠", "划算", "太贵", "贵"}
 }
 
-# === 3. 初始化结构 ===
+#=== 3. 初始化结构 ===
 dim_sentiment_scores = defaultdict(list)
 dim_mentions = defaultdict(int)
 
-# === 4. 处理每条评论 ===
+#=== 4. 处理每条评论 ===
 for content in df["content"]:
     text = str(content)
     words = set(jieba.lcut(text))
@@ -34,7 +34,7 @@ for content in df["content"]:
             dim_sentiment_scores[dim].append(s)
             dim_mentions[dim] += 1
 
-# === 5. 输出结果表格 ===
+#=== 5. 输出结果表格 ===
 output = []
 for dim in dimension_keywords.keys():
     scores = dim_sentiment_scores.get(dim, [])
@@ -47,7 +47,7 @@ for dim in dimension_keywords.keys():
         bad_ratio = round(sum(1 for x in scores if x < 0.4) / count * 100, 1)
     output.append([dim, count, avg, f"{bad_ratio}%" if bad_ratio != "-" else "-"])
 
-# === 6. 保存为 DataFrame 并打印/保存 ===
+#=== 6. 保存为 DataFrame 并打印/保存 ===
 result_df = pd.DataFrame(output, columns=["设计维度", "提及评论数", "平均情感得分", "负面评论占比"])
 print("\n📊 各设计维度用户情感分析：\n")
 print(result_df.to_string(index=False))

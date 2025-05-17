@@ -1,0 +1,82 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{bookmark} % 解决超链接警告
+
+% 页边距设置
+\geometry{left=2cm, right=2cm, top=2.5cm, bottom=2.5cm}
+
+\title{数学建模论文模板}
+\author{你的团队名称}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% 摘要部分（后续填写）
+\begin{abstract}
+摘要内容将在此处补充...
+\end{abstract}
+
+\section{问题分析}
+\subsection{数据来源}
+% 在此描述数据获取方式
+
+\subsection{分析框架}
+\begin{algorithm}[H]
+\caption{核心算法框架} 
+\begin{algorithmic}[1]
+\State 初始化参数
+\For{迭代次数}
+    \State 执行计算步骤
+\EndFor
+\State \Return 最终结果
+\end{algorithmic}
+\end{algorithm}
+
+% 原图片引用位置已移除
+% 如需添加图片，使用以下模板：
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{图片路径}
+%   \caption{图片说明}
+% \end{figure}
+
+\section{模型建立}
+\subsection{数学公式}
+\begin{equation}
+f(x) = \sum_{i=1}^n \beta_i x_i
+\end{equation}
+
+\subsection{参数说明}
+\begin{table}[h]
+\centering
+\caption{参数定义表}
+\begin{tabular}{cll}
+\toprule
+符号 & 类型 & 说明 \\
+\midrule
+$\alpha$ & 系数 & 价格弹性系数 \\
+$Q$ & 变量 & 市场需求量 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{参考文献}
+\begin{thebibliography}{9}
+\bibitem{idc} IDC智能手机市场季度报告, 2023.
+\end{thebibliography}
+
+\appendix
+\section{代码示例}
+\begin{lstlisting}[language=Python,caption=示例代码]
+print("Hello Math Modeling")
+\end{lstlisting}
+
+\end{document}
